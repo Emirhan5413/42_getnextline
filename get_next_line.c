@@ -57,7 +57,7 @@ char	*shift_line(char *str)
 	int		len;
 	int		tmp;
 	char	*next_line;
-	
+
 	len = 0;
 	while (str[len] && str[len] != '\n')
 		++len;
@@ -93,4 +93,3 @@ char	*get_next_line(int fd)
 	str = shift_line(str);
 	return (line);
 }
-

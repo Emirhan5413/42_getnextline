@@ -1,8 +1,8 @@
 #include "get_next_line.h"
 
-int check_newline(char *str)
+int	check_newline(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -20,9 +20,9 @@ void	*ft_free(void *ptr)
 	return (NULL);
 }
 
-int		ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
