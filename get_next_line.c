@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunlu <eunlu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: archemi <archemi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 04:23:50 by eunlu             #+#    #+#             */
-/*   Updated: 2024/12/16 04:23:51 by eunlu            ###   ########.fr       */
+/*   Updated: 2024/12/16 08:14:21 by archemi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*read_file(int fd, char *str)
 	return (str);
 }
 
-char	*get_line(char *str)
+char	*ft_get_line(char *str)
 {
 	int		len;
 	char	*line;
@@ -101,7 +101,7 @@ char	*get_next_line(int fd)
 	str = read_file(fd, str);
 	if (!str)
 		return (NULL);
-	line = get_line(str);
+	line = ft_get_line(str);
 	str = shift_line(str);
 	return (line);
 }

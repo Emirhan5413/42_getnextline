@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunlu <eunlu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: archemi <archemi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 04:23:53 by eunlu             #+#    #+#             */
-/*   Updated: 2024/12/16 04:23:54 by eunlu            ###   ########.fr       */
+/*   Updated: 2024/12/16 08:14:27 by archemi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strlen(char *str);
 
 char	*read_file(int fd, char *str);
-char	*get_line(char *str);
+char	*ft_get_line(char *str);
 char	*shift_line(char *str);
 char	*get_next_line(int fd);
 
