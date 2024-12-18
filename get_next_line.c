@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: archemi <archemi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 04:23:50 by eunlu             #+#    #+#             */
-/*   Updated: 2024/12/16 08:14:21 by archemi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
 char	*read_file(int fd, char *str)
@@ -20,18 +8,21 @@ char	*read_file(int fd, char *str)
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	while (!check_newline(str))
+	while (!check_nl(str))
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
 		{
 			free(buffer);
+			free(str);
 			return (NULL);
 		}
 		if (bytes_read == 0)
 			break ;
 		buffer[bytes_read] = '\0';
 		str = ft_strjoin(str, buffer);
+		if (!str)
+			return (ft_free(buffer));
 	}
 	free (buffer);
 	return (str);
@@ -43,10 +34,10 @@ char	*ft_get_line(char *str)
 	char	*line;
 	int		is_newline;
 
-	len = 0;
-	if (!str[len])
+	if (!str || !str[0])
 		return (NULL);
-	is_newline = check_newline(str);
+	is_newline = check_nl(str);
+	len = 0;
 	while (str[len] && str[len] != '\n')
 		++len;
 	line = malloc(sizeof(char) * (len + is_newline + 1));
@@ -67,28 +58,30 @@ char	*ft_get_line(char *str)
 char	*shift_line(char *str)
 {
 	int		len;
-	int		tmp;
-	char	*next_line;
+	int		i;
+	char	*new_str;
 
+	if (!str)
+		return (NULL);
 	len = 0;
 	while (str[len] && str[len] != '\n')
 		++len;
 	if (!str[len])
-		ft_free(str);
-	next_line = malloc(sizeof(char) * (ft_strlen(str) - len));
-	if (!next_line)
-		return (NULL);
+		return (ft_free(str));
+	new_str = malloc(sizeof(char) * (ft_strlen(str) - len + 1));
+	if (!new_str)
+		return (ft_free(str));
 	++len;
-	tmp = 0;
+	i = 0;
 	while (str[len])
 	{
-		next_line[tmp] = str[len];
+		new_str[i] = str[len];
 		++len;
-		++tmp;
+		++i;
 	}
-	next_line[tmp] = '\0';
+	new_str[i] = '\0';
 	free(str);
-	return (next_line);
+	return (new_str);
 }
 
 char	*get_next_line(int fd)
@@ -102,6 +95,12 @@ char	*get_next_line(int fd)
 	if (!str)
 		return (NULL);
 	line = ft_get_line(str);
+	if (!line)
+	{
+		free(str);
+		str = NULL;
+		return (NULL);
+	}
 	str = shift_line(str);
 	return (line);
 }

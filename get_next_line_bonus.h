@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: archemi <archemi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 04:23:43 by eunlu             #+#    #+#             */
-/*   Updated: 2024/12/16 08:14:35 by archemi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
@@ -23,9 +11,9 @@
 # include <stdio.h>
 # include <unistd.h>
 
-int		check_newline(char *str);
+int		check_nl(char *str);
 void	*ft_free(void *ptr);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 int		ft_strlen(char *str);
 
 char	*read_file(int fd, char *str);
