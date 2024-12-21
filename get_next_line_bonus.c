@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eunlu <eunlu@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/21 15:45:31 by eunlu             #+#    #+#             */
+/*   Updated: 2024/12/21 15:45:32 by eunlu            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line_bonus.h"
+#include <unistd.h>
 
 char	*read_file(int fd, char *str)
 {
@@ -94,12 +107,6 @@ char	*get_next_line(int fd)
 	if (!str[fd])
 		return (NULL);
 	line = ft_get_line(str[fd]);
-	if (!line)
-	{
-		free(str[fd]);
-		str[fd] = NULL;
-		return (NULL);
-	}
 	str[fd] = shift_line(str[fd]);
 	return (line);
 }

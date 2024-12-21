@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eunlu <eunlu@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/21 15:45:19 by eunlu             #+#    #+#             */
+/*   Updated: 2024/12/21 15:45:20 by eunlu            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
+#include <unistd.h>
 
 char	*read_file(int fd, char *str)
 {
@@ -95,12 +108,6 @@ char	*get_next_line(int fd)
 	if (!str)
 		return (NULL);
 	line = ft_get_line(str);
-	if (!line)
-	{
-		free(str);
-		str = NULL;
-		return (NULL);
-	}
 	str = shift_line(str);
 	return (line);
 }

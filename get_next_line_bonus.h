@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eunlu <eunlu@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/21 15:45:33 by eunlu             #+#    #+#             */
+/*   Updated: 2024/12/21 15:59:43 by eunlu            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
@@ -6,10 +18,6 @@
 # endif
 
 # include <stdlib.h>
-# include <stddef.h>
-# include <fcntl.h>
-# include <stdio.h>
-# include <unistd.h>
 
 int		check_nl(char *str);
 void	*ft_free(void *ptr);
