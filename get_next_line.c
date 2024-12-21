@@ -6,14 +6,14 @@
 /*   By: eunlu <eunlu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:45:19 by eunlu             #+#    #+#             */
-/*   Updated: 2024/12/21 15:45:20 by eunlu            ###   ########.fr       */
+/*   Updated: 2024/12/21 16:58:20 by eunlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <unistd.h>
 
-char	*read_file(int fd, char *str)
+char	*ft_read_file(int fd, char *str)
 {
 	char	*buffer;
 	int		bytes_read;
@@ -21,7 +21,7 @@ char	*read_file(int fd, char *str)
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	while (!check_nl(str))
+	while (!check_newline(str))
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
@@ -47,9 +47,9 @@ char	*ft_get_line(char *str)
 	char	*line;
 	int		is_newline;
 
-	if (!str || !str[0])
+	if (!str[0])
 		return (NULL);
-	is_newline = check_nl(str);
+	is_newline = check_newline(str);
 	len = 0;
 	while (str[len] && str[len] != '\n')
 		++len;
@@ -68,14 +68,12 @@ char	*ft_get_line(char *str)
 	return (line);
 }
 
-char	*shift_line(char *str)
+char	*ft_shift_line(char *str)
 {
 	int		len;
 	int		i;
 	char	*new_str;
 
-	if (!str)
-		return (NULL);
 	len = 0;
 	while (str[len] && str[len] != '\n')
 		++len;
@@ -104,10 +102,10 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	str = read_file(fd, str);
+	str = ft_read_file(fd, str);
 	if (!str)
 		return (NULL);
 	line = ft_get_line(str);
-	str = shift_line(str);
+	str = ft_shift_line(str);
 	return (line);
 }

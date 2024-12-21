@@ -6,7 +6,7 @@
 /*   By: eunlu <eunlu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:45:33 by eunlu             #+#    #+#             */
-/*   Updated: 2024/12/21 15:59:43 by eunlu            ###   ########.fr       */
+/*   Updated: 2024/12/21 16:58:30 by eunlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 
 # include <stdlib.h>
 
-int		check_nl(char *str);
+int		check_newline(char *str);
 void	*ft_free(void *ptr);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strlen(char *str);
 
-char	*read_file(int fd, char *str);
+char	*ft_read_file(int fd, char *str);
 char	*ft_get_line(char *str);
-char	*shift_line(char *str);
+char	*ft_shift_line(char *str);
 char	*get_next_line(int fd);
 
 #endif

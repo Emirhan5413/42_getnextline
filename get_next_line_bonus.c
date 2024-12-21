@@ -6,14 +6,14 @@
 /*   By: eunlu <eunlu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:45:31 by eunlu             #+#    #+#             */
-/*   Updated: 2024/12/21 15:45:32 by eunlu            ###   ########.fr       */
+/*   Updated: 2024/12/21 16:58:38 by eunlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 #include <unistd.h>
 
-char	*read_file(int fd, char *str)
+char	*ft_read_file(int fd, char *str)
 {
 	char	*buffer;
 	int		bytes_read;
@@ -21,12 +21,13 @@ char	*read_file(int fd, char *str)
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	while (!check_nl(str))
+	while (!check_newline(str))
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
 		{
 			free(buffer);
+			free(str);
 			return (NULL);
 		}
 		if (bytes_read == 0)
@@ -46,9 +47,9 @@ char	*ft_get_line(char *str)
 	char	*line;
 	int		is_newline;
 
-	if (!str || !str[0])
+	if (!str[0])
 		return (NULL);
-	is_newline = check_nl(str);
+	is_newline = check_newline(str);
 	len = 0;
 	while (str[len] && str[len] != '\n')
 		++len;
@@ -67,14 +68,12 @@ char	*ft_get_line(char *str)
 	return (line);
 }
 
-char	*shift_line(char *str)
+char	*ft_shift_line(char *str)
 {
 	int		len;
 	int		i;
 	char	*new_str;
 
-	if (!str)
-		return (NULL);
 	len = 0;
 	while (str[len] && str[len] != '\n')
 		++len;
@@ -103,10 +102,10 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 255)
 		return (NULL);
-	str[fd] = read_file(fd, str[fd]);
+	str[fd] = ft_read_file(fd, str[fd]);
 	if (!str[fd])
 		return (NULL);
 	line = ft_get_line(str[fd]);
-	str[fd] = shift_line(str[fd]);
+	str[fd] = ft_shift_line(str[fd]);
 	return (line);
 }

@@ -6,13 +6,13 @@
 /*   By: eunlu <eunlu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:45:25 by eunlu             #+#    #+#             */
-/*   Updated: 2024/12/21 15:45:26 by eunlu            ###   ########.fr       */
+/*   Updated: 2024/12/21 16:58:06 by eunlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	check_nl(char *str)
+int	check_newline(char *str)
 {
 	int	i;
 
@@ -55,7 +55,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);
-	ptr = (char *)malloc(len_s1 + len_s2 + 1);
+	ptr = malloc(sizeof(char) * (len_s1 + len_s2 + 1));
 	if (!ptr)
 		return (ft_free(s1));
 	i = 0;
